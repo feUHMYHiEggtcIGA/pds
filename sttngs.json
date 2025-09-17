@@ -1,0 +1,14 @@
+{
+	"setdef": {
+		"api_url": "https://api.bybit.com",
+		"category": "linear",
+		"update": 60,
+		"th": 0.005,
+		"limit": 0.15,
+		"delay_req_sec": 1,
+		"black_list_symbols": [],
+		"black_list_coins": ["USDC"],
+		"symbols": []
+	},
+	"other_api": [{}]
+}
