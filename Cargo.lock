@@ -47,6 +47,7 @@ checksum = "9d297deb1925b89f2ccc13d7635fa0714f12c87adce1c75356b39ca9b7178567"
 [[package]]
 name = "bc_exch_api_funcs"
 version = "0.1.52"
+source = "git+https://github.com/feUHMYHiEggtcIGA/bc_exch_api_funcs.git#319392c677a8b3b51c59056f0072fce80b5e1836"
 dependencies = [
  "bc_utils_core",
  "bc_utils_lg",
@@ -60,6 +61,7 @@ dependencies = [
 [[package]]
 name = "bc_utils_core"
 version = "0.1.1"
+source = "git+https://github.com/feUHMYHiEggtcIGA/bc_utils_core.git#f463ddda803f3905debfee50b5d67f1eb1b781b1"
 dependencies = [
  "bc_utils_lg",
  "hex",
@@ -71,6 +73,7 @@ dependencies = [
 [[package]]
 name = "bc_utils_lg"
 version = "0.1.5"
+source = "git+https://github.com/feUHMYHiEggtcIGA/bc_utils_lg.git#89d4e35bddc81ddc54257da2d27c429aa8ead891"
 dependencies = [
  "indexmap",
  "num-traits",
