@@ -1,12 +1,14 @@
 [package]
 name = "pds"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 
 [dependencies]
 bc_exch_api_funcs = {git = "https://github.com/feUHMYHiEggtcIGA/bc_exch_api_funcs.git"}
-
 serde ={ version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 rustc-hash = "1.1"
 tokio = { version = "1", features = ["full"] }
+teloxide = { version = "0.17.0", features = ["macros"] }
+log = "0.4"
+pretty_env_logger = "0.5"

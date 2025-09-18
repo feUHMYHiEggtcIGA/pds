@@ -6,6 +6,7 @@ use bc_exch_api_funcs::bybit::market::symbols::symbols_a;
 use rustc_hash::FxHashMap;
 
 use crate::constt::S;
+use crate::other_api::send_to_other_api;
 
 
 pub async fn symbols() -> FxHashMap<String, f64> 
@@ -72,8 +73,10 @@ pub async fn scrnr() -> Result<(), Box<dyn Error>>
                 && !S.setdef.black_list_coins.iter().any(|v| newsmbl.contains(v))
                 && {S.setdef.symbols.len() == 0 || S.setdef.symbols.contains(newsmbl)}
             } {
-                println!("{newsmbl}: {:.2}%", div * 100.0);
+                let msg = format!("{newsmbl}: {:.2}%", div * 100.0);
+                println!("{}", &msg);
                 *oldprc = *newprc;
+                send_to_other_api(&msg, S.other_api.as_slice()).await?;
             }
         }
         sleep(Duration::from_secs(S.setdef.delay_req_sec));
