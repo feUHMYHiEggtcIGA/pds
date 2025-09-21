@@ -17,6 +17,7 @@ pub struct SETTINGS_S {
     pub black_list_symbols: Vec<String>,
     pub black_list_coins: Vec<String>,
     pub symbols: Vec<String>,
+    pub wait_sec_req: f64,
 }
 
 #[derive(Serialize, Deserialize)]

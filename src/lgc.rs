@@ -9,16 +9,18 @@ use crate::constt::S;
 use crate::other_api::send_to_other_api;
 
 
-pub async fn symbols() -> FxHashMap<String, f64> 
+pub async fn symbols() -> Result<FxHashMap<String, f64>, Box<dyn Error>> 
 {
-    symbols_a(
+    Ok(symbols_a(
         &S.setdef.api_url,
         &S.setdef.category,
         "",
         "",
         "",
+        &S.setdef.wait_sec_req,
     )
         .await
+        ?
         .into_iter()
         .filter(|v| {
             !S.setdef.black_list_symbols.contains(&v.symbol) 
@@ -26,7 +28,7 @@ pub async fn symbols() -> FxHashMap<String, f64>
             && {if S.setdef.symbols.len() == 0 {true}else {S.setdef.symbols.contains(&v.symbol)}}
         })
         .map(|s| (s.symbol, s.lastPrice.parse().unwrap()))
-        .collect()
+        .collect())
 }
 
 pub async fn updt(
@@ -46,14 +48,14 @@ pub async fn updt(
         oldtime = lasttime; 
     }
     lasttime = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
-    lastprice = symbols().await;
+    lastprice = symbols().await?;
     Ok((lasttime, oldtime, lastprice, oldprice))
 }
 
 pub async fn scrnr() -> Result<(), Box<dyn Error>>
 {
-    let mut lastprice = symbols().await;
-    let mut oldprice = symbols().await;
+    let mut lastprice = symbols().await?;
+    let mut oldprice = symbols().await?;
     let mut lasttime = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
     let mut oldtime = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
 
